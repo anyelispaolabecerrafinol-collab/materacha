@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6757e8">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/materacha-icon.svg" type="image/svg+xml">
+<meta name="description" content="Materacha: aprende sumas, restas, multiplicaciones y divisiones con ejercicios interactivos, explicaciones y rachas diarias.">
+<title>Materacha | Aprende matemáticas jugando</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">🧠</div><div><h1>Materacha</h1><p>Aprende, practica y mantén tu racha</p></div></div>
+  <div class="header-actions"><div class="pill">✨ Aprende jugando</div><button class="pill" id="resetBtn" title="Borrar progreso">Reiniciar</button></div>
+</header>
+<main>
+  <section class="welcome">
+    <div><h2>¡Hola, genio de las matemáticas! 👋</h2><p>Un ejercicio a la vez. Tú puedes lograrlo.</p></div>
+    <div class="streak"><span class="fire">🔥</span><div><strong><span id="streakCount">0</span> días</strong><small>racha actual</small></div></div>
+  </section>
+  <section class="stats">
+    <div class="stat"><div class="icon">⭐</div><strong id="points">0</strong><span>Puntos ganados</span></div>
+    <div class="stat"><div class="icon">✅</div><strong id="solved">0</strong><span>Ejercicios correctos</span></div>
+    <div class="stat"><div class="icon">🏆</div><strong id="bestStreak">0 días</strong><span>Mejor racha</span></div>
+  </section>
+  <div class="section-title"><div><h3>Elige tu taller</h3><p>Más de 50 ejercicios por operación, mezclados por nivel.</p></div></div>
+  <section class="workshops" id="workshops"></section>
+  <section class="bottom-grid">
+    <div class="panel"><h3>🚀 ¿Seguimos aprendiendo?</h3><p>Continúa con una práctica rápida. Materacha te mostrará un ejercicio, comprobará tu respuesta y te ayudará si te equivocas.</p><button class="primary" id="continueBtn">Continuar aprendiendo →</button><p class="tiny" id="dailyMessage">Practica hoy para encender tu racha.</p></div>
+    <div class="panel"><h3>⏰ Recordatorio diario</h3><p>Elige una hora para que Materacha te recuerde practicar. En esta versión web el aviso aparece dentro de la página mientras esté abierta.</p><div class="settings-row"><label for="reminderToggle">Activar recordatorio</label><input class="toggle" type="checkbox" id="reminderToggle"></div><div class="settings-row"><label for="reminderTime">Hora del recordatorio</label><input type="time" id="reminderTime" value="17:00"></div><button class="secondary" id="saveReminder" style="margin-top:14px">Guardar ajustes</button></div>
+  </section>
+</main>
+<footer>Materacha • Cada intento te ayuda a aprender 💜</footer>
+<div class="overlay" id="exerciseOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="close" id="closeModal" aria-label="Cerrar">✕</button>
+    <div class="modal-head"><div class="eyebrow" id="workshopEyebrow">Taller</div><h2 id="modalTitle">¡Vamos a practicar!</h2><p id="exerciseMeta">Ejercicio 1</p></div>
+    <div class="exercise-card" id="exerciseCard">
+      <div class="operation-label" id="operationLabel">SUMA</div>
+      <div class="problem" id="problem">123 + 45 = ?</div>
+      <input class="answer" id="answerInput" type="number" inputmode="numeric" autocomplete="off" aria-label="Escribe tu respuesta" placeholder="Tu respuesta">
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+      <div class="actions" id="mainActions"><button class="primary" id="checkBtn">Comprobar respuesta</button><button class="secondary hidden" id="nextBtn">Siguiente →</button></div>
+      <div class="actions"><button class="quiet hidden" id="hintBtn">💡 Dame una pista</button><button class="secondary hidden" id="dontUnderstandBtn">No entiendo</button></div>
+      <div id="hintBox" class="hint hidden"></div>
+      <div id="explanation" class="steps hidden"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:center"><span class="tiny" id="scoreLine">Aciertos: 0</span><button class="quiet" id="finishBtn">Terminar taller</button></div>
+  </div>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="app.js" defer></script>
+</body>
+</html>
